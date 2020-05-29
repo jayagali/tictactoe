@@ -597,6 +597,154 @@ class CreateAcct extends Component {
 } //end of CreateAcct()
 
 
+class UpdateAcct extends Component {
+ 
+	constructor(props) {
+    
+    super(props);
+    console.log('UpdateAcct: hello, UpdateAcct Here');
+  
+    console.log('UpdateAcct: inside UpdateAcct');
+    console.debug('UpdateAcct: inside UpdateAcct');
+		this.state = {
+      isLoaded: false,
+      gotResp: 1,
+			items: {},
+		};
+  }
+
+ 
+  async componentDidMount() {
+    console.log('UpdateAcct: ComponentDidMount got called');
+
+    const accountInfo = {
+      email: 'cool@cool.com',
+      accountType : 'cust_',
+      phone: '650-555-5555',
+      category: 'test',
+      address: '22 Minnesota road',
+      country: 'US',
+      zip: '94455',
+      lname: 'Hi',
+    fname: 'Fi',
+    description: 'Updated Data',
+    image: ''
+
+    }
+
+    
+    console.log("UpdateAcct: account Info stringified: "+ JSON.stringify(accountInfo));
+
+    // POST request using fetch with async/await
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+   //   body: JSON.stringify({ title: 'React POST Request Example' })
+      body: JSON.stringify(accountInfo)
+    };
+    /*
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts', requestOptions);
+    const data = await response.json();
+    this.setState({ postId: data.id });
+    */
+
+    try {
+     //  const response = await fetch('https://phvk9xwk03.execute-api.us-west-1.amazonaws.com/TestStage//widgetbyid?id=HelloWorld!');
+     // const response = await fetch('https://st9ohl4b0d.execute-api.us-west-1.amazonaws.com/DBTest/dbwidget?id=3');
+     // const response = await fetch('https://5rbc6bh8f3.execute-api.us-west-1.amazonaws.com/TestStage/getacct?email=cust_finale@finale.com');
+      const response = await fetch(' https://5rbc6bh8f3.execute-api.us-west-1.amazonaws.com/TestStage/updateaccount', requestOptions);
+     
+      if (!response.ok) {
+        console.log('UpdateAcct: response Error:'+response.json);
+        throw Error(response.statusText);
+      }
+      const json = await response.json();
+      console.log('UpdateAcct: Post call successful. Before calling setState to set to true');
+
+      this.setState({ 
+        isloaded: true,
+        gotResp: 2,
+        items: json,
+       });
+       console.log('UpdateAcct: After calling setState to set to true once');
+       
+
+    } catch (error) {
+      console.log(error);
+    }
+
+    console.log('UpdateAcct: after setting items to true, twice')
+    
+    console.log('UpdateAcct: state isLoaded:', this.state.isloaded)
+    console.log('UpdateAcct: gotResp Value:', this.state.gotResp);
+    console.log('UpdateAcct: Item Values:', this.state.items);
+   // this.forceUpdate();
+  }
+
+
+
+	render() {
+    
+    console.log('UpdateAcct: Inside Render:', this.state.isLoaded)
+    console.log('UpdateAcct: Inside Render:', this.state.gotResp);
+    console.log('UpdateAcct: Inside Render:', this.state.items)
+    var {isLoaded, items}= this.state;
+
+    /* THIS WORKS
+    return <div className="Jotter">
+        <h1> Inside Render of Jotter </h1>;
+      </div>;
+
+      return <h1> Testing hello </h1>;
+  } 
+   
+}*/
+   
+	//	let { items } = this.state;
+		if (this.state.gotResp == 2) {
+			return <div> Loaded successfully...
+        {console.log('UpdateAcct: Inside loaded successfully')}
+        <h1> {this.state.isLoaded} </h1>
+        { 
+          <div key={items.id}>
+            <li> Customer Email: </li>{items.email}
+            <li> Customer Last name: </li>{items.lname}
+            <li> Customer First name: </li>{items.fname}
+            <li> Customer Phone: </li>{items.phone}
+            <li> Customer Address: </li>{items.address}
+            <li> Customer Country: </li>{items.country}
+            <li> Customer Zip: </li>{items.zip}
+            <h4> End of message</h4>
+          </div>
+        /*items.map(item => (
+						<div key={item.id}>
+							<li>{item.name}</li>
+						</div>
+        ))*/ }
+        </div>;
+    } 
+    else {
+			return (
+				<div>
+          <h1> Loading...</h1>
+          {
+            console.log('UpdateAcct: Inside Else, unsuccessfully')
+          }
+          <h1> {this.state.isLoaded} </h1>
+          {/* items.map(item => 
+            (
+              <div key={item.id}>
+                 <li>{item.id}</li>
+                 <li>{item.widget}</li>
+              </div>
+            )
+            )*/
+          } 
+				</div>
+			);
+		}
+  } // end of render()
+} //end of UpdateAcct()
 
 
 
@@ -622,7 +770,7 @@ function App() {
         <Game />
         
        
-        <CreateAcct />
+        <UpdateAcct />
 
       </header>
     </div>

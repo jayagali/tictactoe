@@ -2,7 +2,9 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
-
+import GetCustomerByEmail from './GetCustomerByEmail';
+import CreateCustomer from './CreateCustomer';
+import UpdateCustomer from './UpdateCustomer';
 
 
 // ==================================================
@@ -360,8 +362,8 @@ class Account extends Component {
     try {
      //  const response = await fetch('https://phvk9xwk03.execute-api.us-west-1.amazonaws.com/TestStage//widgetbyid?id=HelloWorld!');
      // const response = await fetch('https://st9ohl4b0d.execute-api.us-west-1.amazonaws.com/DBTest/dbwidget?id=3');
-      const response = await fetch('https://5rbc6bh8f3.execute-api.us-west-1.amazonaws.com/TestStage/getacct?email=cust_finale@finale.com');
- 
+      //const response = await fetch('https://5rbc6bh8f3.execute-api.us-west-1.amazonaws.com/TestStage/getacct?email=galija@yahoo.com');
+      const response = await fetch('https://5xymucgx95.execute-api.us-west-1.amazonaws.com/DevStaging/getcustomer?email=galija@yahoo.com');
      
       if (!response.ok) {
         throw Error(response.statusText);
@@ -769,8 +771,12 @@ function App() {
         
         <Game />
         
-       
-        <UpdateAcct />
+       { /* <CreateCustomer />
+        <GetCustomerByEmail /> 
+        */
+        }
+        <UpdateCustomer />
+
 
       </header>
     </div>

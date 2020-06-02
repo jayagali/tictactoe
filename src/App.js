@@ -5,6 +5,9 @@ import { Component } from 'react';
 import GetCustomerByEmail from './GetCustomerByEmail';
 import CreateCustomer from './CreateCustomer';
 import UpdateCustomer from './UpdateCustomer';
+import GetBizByUsername from './GetBizByUsername';
+import UpdateBiz from './UpdateBiz';
+import CreateBiz from './CreateBiz';
 
 
 // ==================================================
@@ -771,13 +774,16 @@ function App() {
         
         <Game />
         
-       { /* <CreateCustomer />
+       { /* 
+        <CreateCustomer />
         <GetCustomerByEmail /> 
-        */
-        }
         <UpdateCustomer />
+        <GetBizByUsername />
+        <CreateBiz />
+          */
+      }
 
-
+      <UpdateBiz />
       </header>
     </div>
   );

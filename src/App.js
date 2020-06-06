@@ -8,6 +8,9 @@ import UpdateCustomer from './UpdateCustomer';
 import GetBizByUsername from './GetBizByUsername';
 import UpdateBiz from './UpdateBiz';
 import CreateBiz from './CreateBiz';
+import GetVenues from './GetVenues';
+//import UpdateVenues from './UpdateVenues';
+import CreateVenues from './CreateVenues';
 
 
 // ==================================================
@@ -775,15 +778,18 @@ function App() {
         <Game />
         
        { /* 
-        <CreateCustomer />
-        <GetCustomerByEmail /> 
-        <UpdateCustomer />
-        <GetBizByUsername />
-        <CreateBiz />
+        
+         <GetCustomerByEmail /> 
+         <UpdateCustomer />
+         <CreateBiz />
+         <GetBizByUsername />
+         <UpdateBiz />
+          <CreateCustomer />
+        <CreateVenues />
           */
       }
-
-      <UpdateBiz />
+        <GetVenues />
+  
       </header>
     </div>
   );

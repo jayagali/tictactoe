@@ -1,15 +1,15 @@
 import React from 'react';
 import { Component } from 'react';
 
-class CreateCustomer extends Component {
+class UpdateBiz extends Component {
  
 	constructor(props) {
     
     super(props);
-    console.log('CreateCustomer: hello, CreateCustomer Here');
+    console.log('UpdateBiz: hello, UpdateBiz Here');
   
-    console.log('CreateCustomer: inside CreateCustomer');
-    console.debug('CreateCustomer: inside CreateCustomer');
+    console.log('UpdateBiz: inside UpdateBiz');
+    console.debug('UpdateBiz: inside UpdateBiz');
 		this.state = {
       isLoaded: false,
       gotResp: 1,
@@ -19,65 +19,60 @@ class CreateCustomer extends Component {
 
  
   async componentDidMount() {
-    console.log('CreateCustomer: ComponentDidMount got called');
+    console.log('UpdateBiz: ComponentDidMount got called');
 
     const accountInfo = {
-        email: 'cors@cors.com',
-        fname: 'why',
-        lname: 'Cors',
-        addr1: 'Fails',
-        addr2: '',
-        city: '',
-        state: '',
-        zip: '',
-        country: 'USA',
-        phone: '415-222-7777',
-        cust_status: 'New',
+      bizname: "Farmers LLC",
+      fname: '',
+      lname: '',
+      addr1: '',
+      addr2: '',
+      city: 'San Mateo',
+      state: 'CA',
+      zip: '94404',
+      country: 'USA',
+      phone: '',
+      biz_status: 'Active',
+      bizid: 8
     }
 
-    console.log("CreateCustomer: account Info stringified: "+ JSON.stringify(accountInfo));
+    console.log("UpdateBiz: account Info stringified: "+ JSON.stringify(accountInfo));
 
     // POST request using fetch with async/await
     const requestOptions = {
-      method: 'POST',
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-   //   body: JSON.stringify({ title: 'React POST Request Example' })
       body: JSON.stringify(accountInfo)
     };
-    /*
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts', requestOptions);
-    const data = await response.json();
-    this.setState({ postId: data.id });
-    */
 
     try {
  
-      const response = await fetch('https://5xymucgx95.execute-api.us-west-1.amazonaws.com/DevStaging/createcustomer', requestOptions);
+      const response = await fetch('https://erjqi053p8.execute-api.us-west-1.amazonaws.com/DevStaging/updatebiz', requestOptions);
      
       if (!response.ok) {
-        console.log('CreateCustomer: response Error:'+response.json);
+        console.log('UpdateBiz: response Error:'+response.json);
         throw Error(response.statusText);
       }
       const json = await response.json();
-      console.log('CreateCustomer: Post call successful. Before calling setState to set to true');
+      console.log('UpdateBiz: Post call successful. Before calling setState to set to true');
 
       this.setState({ 
         isloaded: true,
         gotResp: 2,
         items: json,
        });
-       console.log('CreateCustomer: After calling setState to set to true once');
+       console.log('UpdateBiz: After calling setState to set to true once');
        
 
     } catch (error) {
       console.log(error);
     }
 
-    console.log('CreateCustomer: after setting items to true, twice')
+    console.log('UpdateBiz: after setting items to true, twice')
     
-    console.log('CreateCustomer: state isLoaded:', this.state.isloaded)
-    console.log('CreateCustomer: gotResp Value:', this.state.gotResp);
-    console.log('CreateCustomer: Item Values:', this.state.items);
+    console.log('UpdateBiz: state isLoaded:', this.state.isloaded)
+    console.log('UpdateBiz: gotResp Value:', this.state.gotResp);
+    console.log('UpdateBiz: Item Values:', this.state.items);
    // this.forceUpdate();
   }
 
@@ -85,9 +80,9 @@ class CreateCustomer extends Component {
 
 	render() {
     
-    console.log('CreateCustomer: Inside Render:', this.state.isLoaded)
-    console.log('CreateCustomer: Inside Render:', this.state.gotResp);
-    console.log('CreateCustomer: Inside Render:', this.state.items)
+    console.log('UpdateBiz: Inside Render:', this.state.isLoaded)
+    console.log('UpdateBiz: Inside Render:', this.state.gotResp);
+    console.log('UpdateBiz: Inside Render:', this.state.items)
     var {isLoaded, items}= this.state;
 
     //	let { items } = this.state;
@@ -98,7 +93,7 @@ class CreateCustomer extends Component {
                 <h1> {this.state.isLoaded} </h1>
               
                 {/* console.log ('item:'+items) */ }
-                {console.log('CreateCustomer: Ran successfully. statusCode:'+ this.state.items['statusCode']) }
+                {console.log('UpdateBiz: Ran successfully. statusCode:'+ this.state.items['statusCode']) }
                 <h1> {this.state.isLoaded} </h1>
             
                 { /*items['body'].map(item => (
@@ -113,18 +108,18 @@ class CreateCustomer extends Component {
                     <li> Customer Status: {item.cust_status}</li>
                     <h4> End of message</h4>
                     </div> 
-                )) // end of loop
-                */ 
-                } // end of Loop
+                    )) // 
+                */ } // end of items loop 
+         
                 </div> 
-            )
-    } // END IF
+        ) // end of return
+    } // end of IF
     else {
 			return (
 				<div>
           <h1> Loading...</h1>
           {
-            console.log('Widget: Inside Else, unsuccessfully')
+            console.log('CreateAccount: Inside Else, unsuccessfully')
           }
           <h1> {this.state.isLoaded} </h1>
           {/* items.map(item => 
@@ -140,6 +135,6 @@ class CreateCustomer extends Component {
 			);
 		}
   } // end of render()
-} //end of CreateCustomer()
+} //end of UpdateBiz()
 
-export default CreateCustomer;
+export default UpdateBiz;

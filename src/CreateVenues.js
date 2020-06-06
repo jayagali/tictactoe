@@ -1,15 +1,15 @@
 import React from 'react';
 import { Component } from 'react';
 
-class CreateCustomer extends Component {
+class CreateVenues extends Component {
  
 	constructor(props) {
     
     super(props);
-    console.log('CreateCustomer: hello, CreateCustomer Here');
+    console.log('CreateVenues: hello, CreateVenues Here');
   
-    console.log('CreateCustomer: inside CreateCustomer');
-    console.debug('CreateCustomer: inside CreateCustomer');
+    console.log('CreateVenues: inside CreateVenues');
+    console.debug('CreateVenues: inside CreateVenues');
 		this.state = {
       isLoaded: false,
       gotResp: 1,
@@ -19,30 +19,55 @@ class CreateCustomer extends Component {
 
  
   async componentDidMount() {
-    console.log('CreateCustomer: ComponentDidMount got called');
+    console.log('CreateVenues: ComponentDidMount got called');
 
-    const accountInfo = {
-        email: 'cors@cors.com',
-        fname: 'why',
-        lname: 'Cors',
-        addr1: 'Fails',
-        addr2: '',
-        city: '',
-        state: '',
-        zip: '',
-        country: 'USA',
-        phone: '415-222-7777',
-        cust_status: 'New',
+    const venueInfo = {
+        bizid: 1,
+        venues: [
+            {
+                venuename: 'Hi Venue',
+                addr1: 'Falls',
+                addr2: 'Land',
+                city: 'whatever',
+                state: 'CA',
+                zip: '96666',
+                country: 'USA',
+                phone: '415-999-0000',
+                venue_status: 'New'
+            },
+            {
+                venuename: 'Hello',
+                addr1: 'there',
+                addr2: 'My God',
+                city: 'whatever',
+                state: 'CA',
+                zip: '96667',
+                country: 'USA',
+                phone: '415-999-0001',
+                venue_status: 'New'
+            },
+            {
+                venuename: 'Venue_man',
+                addr1: 'Jackson Ave',
+                addr2: '',
+                city: 'Santa',
+                state: 'CA',
+                zip: '96668',
+                country: 'USA',
+                phone: '415-999-0002',
+                venue_status: 'New'
+            }
+        ]
     }
 
-    console.log("CreateCustomer: account Info stringified: "+ JSON.stringify(accountInfo));
+    console.log("CreateVenues: account Info stringified: "+ JSON.stringify(venueInfo));
 
     // POST request using fetch with async/await
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
    //   body: JSON.stringify({ title: 'React POST Request Example' })
-      body: JSON.stringify(accountInfo)
+      body: JSON.stringify(venueInfo)
     };
     /*
     const response = await fetch('https://jsonplaceholder.typicode.com/posts', requestOptions);
@@ -52,32 +77,32 @@ class CreateCustomer extends Component {
 
     try {
  
-      const response = await fetch('https://5xymucgx95.execute-api.us-west-1.amazonaws.com/DevStaging/createcustomer', requestOptions);
+      const response = await fetch('https://998lmeo6xi.execute-api.us-west-1.amazonaws.com/DevStaging/createvenues', requestOptions);
      
       if (!response.ok) {
-        console.log('CreateCustomer: response Error:'+response.json);
+        console.log('CreateVenues: response Error:'+response.json);
         throw Error(response.statusText);
       }
       const json = await response.json();
-      console.log('CreateCustomer: Post call successful. Before calling setState to set to true');
+      console.log('CreateVenues: Post call successful. Before calling setState to set to true');
 
       this.setState({ 
         isloaded: true,
         gotResp: 2,
         items: json,
        });
-       console.log('CreateCustomer: After calling setState to set to true once');
+       console.log('CreateVenues: After calling setState to set to true once');
        
 
     } catch (error) {
       console.log(error);
     }
 
-    console.log('CreateCustomer: after setting items to true, twice')
+    console.log('CreateVenues: after setting items to true, twice')
     
-    console.log('CreateCustomer: state isLoaded:', this.state.isloaded)
-    console.log('CreateCustomer: gotResp Value:', this.state.gotResp);
-    console.log('CreateCustomer: Item Values:', this.state.items);
+    console.log('CreateVenues: state isLoaded:', this.state.isloaded)
+    console.log('CreateVenues: gotResp Value:', this.state.gotResp);
+    console.log('CreateVenues: Item Values:', this.state.items);
    // this.forceUpdate();
   }
 
@@ -85,9 +110,9 @@ class CreateCustomer extends Component {
 
 	render() {
     
-    console.log('CreateCustomer: Inside Render:', this.state.isLoaded)
-    console.log('CreateCustomer: Inside Render:', this.state.gotResp);
-    console.log('CreateCustomer: Inside Render:', this.state.items)
+    console.log('CreateVenues: Inside Render:', this.state.isLoaded)
+    console.log('CreateVenues: Inside Render:', this.state.gotResp);
+    console.log('CreateVenues: Inside Render:', this.state.items)
     var {isLoaded, items}= this.state;
 
     //	let { items } = this.state;
@@ -98,8 +123,14 @@ class CreateCustomer extends Component {
                 <h1> {this.state.isLoaded} </h1>
               
                 {/* console.log ('item:'+items) */ }
-                {console.log('CreateCustomer: Ran successfully. statusCode:'+ this.state.items['statusCode']) }
+                {
+                    console.log('CreateVenues: Ran successfully. statusCode:'+ this.state.items['statusCode']) 
+                }
                 <h1> {this.state.isLoaded} </h1>
+                <h3> JSON Response: </h3>
+                { 
+                    JSON.stringify(items)
+                }
             
                 { /*items['body'].map(item => (
                     <div key={item.custid}>
@@ -140,6 +171,6 @@ class CreateCustomer extends Component {
 			);
 		}
   } // end of render()
-} //end of CreateCustomer()
+} //end of CreateVenues()
 
-export default CreateCustomer;
+export default CreateVenues;

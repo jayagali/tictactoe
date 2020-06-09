@@ -11,6 +11,7 @@ import CreateBiz from './CreateBiz';
 import GetVenues from './GetVenues';
 //import UpdateVenues from './UpdateVenues';
 import CreateVenues from './CreateVenues';
+import UpdateVenues from './UpdateVenues';
 
 
 // ==================================================
@@ -779,17 +780,19 @@ function App() {
         
        { /* 
         
-         <GetCustomerByEmail /> 
-         <UpdateCustomer />
-         <CreateBiz />
-         <GetBizByUsername />
-         <UpdateBiz />
-          <CreateCustomer />
+        <GetCustomerByEmail /> 
+        <UpdateCustomer />
+        <CreateBiz />
+        <GetBizByUsername />
+        <UpdateBiz />
+        <CreateCustomer />
         <CreateVenues />
+        <GetVenues />
           */
       }
-        <GetVenues />
-  
+
+     <UpdateVenues />
+   
       </header>
     </div>
   );

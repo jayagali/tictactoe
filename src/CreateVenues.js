@@ -66,7 +66,6 @@ class CreateVenues extends Component {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-   //   body: JSON.stringify({ title: 'React POST Request Example' })
       body: JSON.stringify(venueInfo)
     };
     /*
@@ -116,7 +115,7 @@ class CreateVenues extends Component {
     var {isLoaded, items}= this.state;
 
     //	let { items } = this.state;
-        let insertID = "";
+
 		if (this.state.gotResp == 2)  {
             return (
                 <div> Loaded successfully...

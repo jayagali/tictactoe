@@ -1,15 +1,15 @@
 import React from 'react';
 import { Component } from 'react';
 
-class UpdateBiz extends Component {
+class UpdateVenues extends Component {
  
 	constructor(props) {
     
     super(props);
-    console.log('UpdateBiz: hello, UpdateBiz Here');
+    console.log('UpdateVenues: hello, UpdateVenues Here');
   
-    console.log('UpdateBiz: inside UpdateBiz');
-    console.debug('UpdateBiz: inside UpdateBiz');
+    console.log('UpdateVenues: inside UpdateVenues');
+    console.debug('UpdateVenues: inside UpdateVenues');
 		this.state = {
       isLoaded: false,
       gotResp: 1,
@@ -19,60 +19,88 @@ class UpdateBiz extends Component {
 
  
   async componentDidMount() {
-    console.log('UpdateBiz: ComponentDidMount got called');
+    console.log('UpdateVenues: ComponentDidMount got called');
 
-    const accountInfo = {
-      bizname: "Farmers LLC",
-      fname: '',
-      lname: '',
-      addr1: '',
-      addr2: '',
-      city: 'San Mateo',
-      state: 'CA',
-      zip: '94404',
-      country: 'USA',
-      phone: '',
-      biz_status: 'Active',
-      bizid: 8
-    }
+    const venueInfo = {
+      bizid: 1,
+      venues: [
+          {
+              venueid: 31,
+              venuename: 'Hi Venue',
+              addr1: 'Falls',
+              addr2: 'Land',
+              city: 'whatever',
+              state: 'CA',
+              zip: '96666',
+              country: 'USA',
+              phone: '415-999-0000',
+              venue_status: 'New'
+          },
+          {
+              venueid: 32,
+              venuename: 'Hello',
+              addr1: 'there',
+              addr2: 'My God',
+              city: 'whatever',
+              state: 'CA',
+              zip: '96667',
+              country: 'USA',
+              phone: '415-999-0001',
+              venue_status: 'New'
+          },
+          {
+              venueid: 33,
+              venuename: 'Venue_man',
+              addr1: 'Jackson Ave',
+              addr2: '',
+              city: 'Santa',
+              state: 'CA',
+              zip: '96668',
+              country: 'USA',
+              phone: '415-999-0002',
+              venue_status: 'New'
+          }
+      ]
+  }
 
-    console.log("UpdateBiz: account Info stringified: "+ JSON.stringify(accountInfo));
+
+    console.log("UpdateVenues: Venues Info stringified: "+ JSON.stringify(venueInfo));
 
     // POST request using fetch with async/await
     const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(accountInfo)
+      body: JSON.stringify(venueInfo)
     };
 
     try {
  
-      const response = await fetch('https://erjqi053p8.execute-api.us-west-1.amazonaws.com/DevStaging/updatebiz', requestOptions);
+      const response = await fetch('https://998lmeo6xi.execute-api.us-west-1.amazonaws.com/DevStaging/updatevenues', requestOptions);
      
       if (!response.ok) {
-        console.log('UpdateBiz: response Error:'+response.json);
+        console.log('UpdateVenues: response Error:'+response.json);
         throw Error(response.statusText);
       }
       const json = await response.json();
-      console.log('UpdateBiz: Post call successful. Before calling setState to set to true');
+      console.log('UpdateVenues: Post call successful. Before calling setState to set to true');
 
       this.setState({ 
         isloaded: true,
         gotResp: 2,
         items: json,
        });
-       console.log('UpdateBiz: After calling setState to set to true once');
+       console.log('UpdateVenues: After calling setState to set to true once');
        
 
     } catch (error) {
       console.log(error);
     }
 
-    console.log('UpdateBiz: after setting items to true, twice')
+    console.log('UpdateVenues: after setting items to true, twice')
     
-    console.log('UpdateBiz: state isLoaded:', this.state.isloaded)
-    console.log('UpdateBiz: gotResp Value:', this.state.gotResp);
-    console.log('UpdateBiz: Item Values:', this.state.items);
+    console.log('UpdateVenues: state isLoaded:', this.state.isloaded)
+    console.log('UpdateVenues: gotResp Value:', this.state.gotResp);
+    console.log('UpdateVenues: Item Values:', this.state.items);
    // this.forceUpdate();
   }
 
@@ -80,22 +108,31 @@ class UpdateBiz extends Component {
 
 	render() {
     
-    console.log('UpdateBiz: Inside Render:', this.state.isLoaded)
-    console.log('UpdateBiz: Inside Render:', this.state.gotResp);
-    console.log('UpdateBiz: Inside Render:', this.state.items)
+    console.log('UpdateVenues: Inside Render:', this.state.isLoaded)
+    console.log('UpdateVenues: Inside Render:', this.state.gotResp);
+    console.log('UpdateVenues: Inside Render:', this.state.items)
     var {isLoaded, items}= this.state;
 
     //	let { items } = this.state;
-        let insertID = "";
+
 		if (this.state.gotResp == 2)  {
             return (
                 <div> Loaded successfully...
                 <h1> {this.state.isLoaded} </h1>
               
                 {/* console.log ('item:'+items) */ }
-                {console.log('UpdateBiz: Ran successfully. statusCode:'+ this.state.items['statusCode']) }
+                {console.log('UpdateVenues: Ran successfully. statusCode:'+ this.state.items['statusCode']) }
                 <h1> {this.state.isLoaded} </h1>
-            
+
+               {/* console.log ('item:'+items) */ }
+               {
+                    console.log('UpdateVenues: Ran successfully. statusCode:'+ this.state.items['statusCode']) 
+                }
+                <h1> {this.state.isLoaded} </h1>
+                <h3> JSON Response: </h3>
+                { 
+                    JSON.stringify(items)
+                }            
                 { /*items['body'].map(item => (
                     <div key={item.custid}>
                     <li> Customer Email: {item.email}</li>
@@ -135,6 +172,6 @@ class UpdateBiz extends Component {
 			);
 		}
   } // end of render()
-} //end of UpdateBiz()
+} //end of UpdateVenues()
 
-export default UpdateBiz;
+export default UpdateVenues;

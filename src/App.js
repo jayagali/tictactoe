@@ -9,9 +9,11 @@ import GetBizByUsername from './GetBizByUsername';
 import UpdateBiz from './UpdateBiz';
 import CreateBiz from './CreateBiz';
 import GetVenues from './GetVenues';
-//import UpdateVenues from './UpdateVenues';
 import CreateVenues from './CreateVenues';
 import UpdateVenues from './UpdateVenues';
+import GetServicesByVenueId from './GetServicesByVenueId';
+import CreateServices from './CreateServices';
+import UpdateServices from './UpdateServices';
 
 
 // ==================================================
@@ -788,10 +790,15 @@ function App() {
         <CreateCustomer />
         <CreateVenues />
         <GetVenues />
+        <UpdateVenues />
+        <CreateServices />
+        <UpdateServices />
           */
       }
 
-     <UpdateVenues />
+
+
+     <GetServicesByVenueId />
    
       </header>
     </div>

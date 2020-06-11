@@ -17,7 +17,6 @@ class UpdateVenues extends Component {
 		};
   }
 
- 
   async componentDidMount() {
     console.log('UpdateVenues: ComponentDidMount got called');
 
